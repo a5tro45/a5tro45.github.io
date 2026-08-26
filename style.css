@@ -93,7 +93,7 @@ h2 {
 .sidebar-img {
   width: 100%;
   max-width: 760px;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
   border-radius: 16px;
