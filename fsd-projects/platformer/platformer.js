@@ -24,7 +24,7 @@ $(function () {
       canvas.height - 10,
       canvas.width + 100,
       200,
-      "rgb(118, 0, 233)"
+      "rgb(20, 133, 209)"
     );
     createPlatform(-50, -50, 50, canvas.height + 500);
     createPlatform(canvas.width, -50, 50, canvas.height + 100);
@@ -34,7 +34,6 @@ $(function () {
     //////////////////////////////////
 
     // TODO 1 - Enable the Grid
-    toggleGrid();
 
 
     // TODO 2 - Create Platforms
