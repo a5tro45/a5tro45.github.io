@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Images</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #131313;
+            color: #8ce4ff;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-size: 20px;
+        }
+
+        #all-contents {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border: 1px solid #6cacc0;
+            border-radius: 12px;
+            margin: 32px 0 24px;
+            gap: 16px;
+        }
+
+        nav h1 {
+            margin: 0;
+            color: #3d525a;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        #nav-ul {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-li {
+            display: block;
+        }
+
+        #nav-ul a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 36px;
+            text-align: center;
+            text-decoration: none;
+            color: #4f656b;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        #nav-ul a:hover {
+            background: #c8dde9;
+            color: #263d45;
+        }
+
+        h2 {
+            margin: 32px 0;
+            color: #8ce4ff;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            text-transform: uppercase;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .image-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+            margin: 0;
+            padding: 12px;
+        }
+
+        .image-item img {
+            display: block;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border: 2px solid #8ce4ff;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(140, 228, 255, 0.2);
+            cursor: pointer;
+            filter: grayscale(100%);
+            transition: transform 0.25s ease, filter 0.4s ease;
+        }
+
+        .image-item img:hover {
+            transform: scale(1.04);
+            filter: grayscale(0%);
+        }
+
+        /* Full-screen slideshow */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            padding: 60px 70px 24px;
+            background: rgba(0, 0, 0, 0.95);
+        }
+
+        .modal-content {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            max-height: 80vh;
+            border: 3px solid #8ce4ff;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        .close,
+        .modal-arrow {
+            position: absolute;
+            color: #8ce4ff;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s ease;
+        }
+
+        .close {
+            top: 12px;
+            right: 28px;
+            font-size: 48px;
+        }
+
+        .modal-arrow {
+            top: 45%;
+            padding: 12px;
+            font-size: 48px;
+        }
+
+        .left {
+            left: 8px;
+        }
+
+        .right {
+            right: 8px;
+        }
+
+        .close:hover,
+        .modal-arrow:hover {
+            color: white;
+        }
+
+        @media (max-width: 900px) {
+            .image-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #all-contents {
+                padding: 0 16px;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #nav-ul {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            #nav-ul a {
+                width: 90px;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-item img {
+                height: 280px;
+            }
+
+            .modal {
+                padding: 70px 42px 24px;
+            }
+
+            .modal-arrow {
+                font-size: 32px;
+                padding: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="all-contents">
+
+        <nav>
+            <h1>Sylar's GitHub Website</h1>
+
+            <ul id="nav-ul">
+                <li class="nav-li">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="nav-li">
+                    <a href="portfolio.html">Portfolio</a>
+                </li>
+                <li class="nav-li">
+                    <a href="images.html">Images</a>
+                </li>
+            </ul>
+        </nav>
+
+        <main>
+            <h2>My Images</h2>
+
+            <div class="image-grid">
+                <figure class="image-item">
+                    <img
+                        src="https://vehicle-images.carscommerce.inc/c8c7-18003988/W1KNJ4GB0VJ032388/9bb66dee2f8eecfe2d92d9f5b13ecbf1.jpg"
+                        alt="Mercedes-Benz vehicle photo 1"
+                        loading="lazy">
+                </figure>
+
+                <figure class="image-item">
+                    <img
+                        src="https://vehicle-images.carscommerce.inc/6f34-110011437/4JGFB7AB7VB741539/f8d826739734d022a1495847aecb809f.webp"
+                        alt="Mercedes-Benz vehicle photo 2"
+                        loading="lazy">
+                </figure>
+
+                <figure class="image-item">
+                    <img
+                        src="https://hips.hearstapps.com/mtg-prod/68b87d42ef8eca000220ad44/21-2027-mercedes-benz-glc-ev-red.jpg"
+                        alt="2027 Mercedes-Benz GLC EV"
+                        loading="lazy">
+                </figure>
+
+                <figure class="image-item">
+                    <img
+                        src="https://hips.hearstapps.com/hmg-prod/images/2024-mercedes-benz-cle-450-331-66798ede30d38.jpg?crop=0.686xw:0.578xh;0.200xw,0.379xh&resize=700:*"
+                        alt="2024 Mercedes-Benz CLE 450"
+                        loading="lazy">
+                </figure>
+
+                <figure class="image-item">
+                    <img
+                        src="https://hips.hearstapps.com/hmg-prod/images/815f2510-6e9a-4fc5-ac04-88795c6a0d1e.jpg?crop=0.673xw:1.00xh;0.160xw,0&resize=1200:*"
+                        alt="Mercedes-Benz vehicle photo 5"
+                        loading="lazy">
+                </figure>
+            </div>
+        </main>
+    </div>
+
+    <!-- Image slideshow -->
+    <div id="imageModal" class="modal">
+        <span class="close" role="button" tabindex="0"
+              aria-label="Close slideshow">&times;</span>
+
+        <span class="modal-arrow left" role="button" tabindex="0"
+              aria-label="Previous image">&#10094;</span>
+
+        <img class="modal-content" id="modalImg" alt="Enlarged Mercedes-Benz">
+
+        <span class="modal-arrow right" role="button" tabindex="0"
+              aria-label="Next image">&#10095;</span>
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        const closeBtn = document.querySelector(".close");
+        const leftArrow = document.querySelector(".modal-arrow.left");
+        const rightArrow = document.querySelector(".modal-arrow.right");
+
+        const images = Array.from(
+            document.querySelectorAll(".image-item img")
+        );
+
+        let currentIndex = 0;
+
+        function showModal(index) {
+            currentIndex = index;
+            modal.style.display = "block";
+            modalImg.src = images[index].src;
+            modalImg.alt = images[index].alt;
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            modalImg.src = "";
+        }
+
+        function previousImage() {
+            showModal((currentIndex - 1 + images.length) % images.length);
+        }
+
+        function nextImage() {
+            showModal((currentIndex + 1) % images.length);
+        }
+
+        images.forEach((img, index) => {
+            img.addEventListener("click", () => showModal(index));
+        });
+
+        closeBtn.addEventListener("click", closeModal);
+        leftArrow.addEventListener("click", previousImage);
+        rightArrow.addEventListener("click", nextImage);
+
+        [closeBtn, leftArrow, rightArrow].forEach(control => {
+            control.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    control.click();
+                }
+            });
+        });
+
+        modal.addEventListener("click", event => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        window.addEventListener("keydown", event => {
+            if (modal.style.display !== "block") return;
+
+            if (event.key === "ArrowLeft") {
+                previousImage();
+            } else if (event.key === "ArrowRight") {
+                nextImage();
+            } else if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
